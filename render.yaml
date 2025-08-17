@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: currency-converter
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn main:app
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: currency-db
+          property: connectionString
+
+databases:
+  - name: currency-db
+    plan: free
